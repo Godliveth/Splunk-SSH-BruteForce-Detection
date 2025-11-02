@@ -83,14 +83,16 @@ Q3	Thor had multiple failed login attempts	Confirms brute-force pattern
 
 ---
 
-🔗 Screenshots Folder (Clickable)
+## 📸 Screenshots Folder
 
-📸 View All Screenshots
+All analysis screenshots from the Splunk investigation are available below 👇  
+
+[🔗 View Screenshots Folder](./screenshots)
 
 
 ---
 
-📊 Dashboard (Optional)
+📊 Dashboard 
 
 All three searches can be combined into a Splunk dashboard for continuous monitoring.
 This demonstrates understanding of real-time security visualization in a SOC setting.
