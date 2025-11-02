@@ -72,11 +72,11 @@ High frequency of failed attempts on a single account is a strong indicator of b
 
 ----
 
-🧩 Findings Summary
-Question	Observation	Key Insight
-Q1	Multiple users experienced failed SSH logins	Indicates broad password-guessing activity
-Q2	User “thor” targeted from IP 98.110.184.71	Potential attacker or automated bot
-Q3	Thor had multiple failed login attempts	Confirms brute-force pattern
+| Question | Observation                                  | Key Insight                                |
+| -------- | -------------------------------------------- | ------------------------------------------ |
+| Q1       | Multiple users experienced failed SSH logins | Indicates broad password-guessing activity |
+| Q2       | User “thor” targeted from IP `98.110.184.71` | Potential attacker or automated bot        |
+| Q3       | Thor had multiple failed login attempts      | Confirms brute-force pattern               |
 
 ---
 
