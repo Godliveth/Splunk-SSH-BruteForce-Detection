@@ -29,9 +29,8 @@ This project demonstrates how to extract and analyze failed login attempts, iden
 
 spl
 
-    index=ssh_index
-    | spath
-    | search status="failed"
+    index=ssh_json_index  "Failed password"
+    | rex "Failed password for (invalid user )?(?<user>\w+)"
     | stats count by user
     | sort - count
 
@@ -45,7 +44,7 @@ In real-world SOC monitoring, repeated failures followed by success from the sam
 
 SPL Query:
 
-    index=ssh_index
+    index=ssh_json_index
     | spath
     | search user="thor"
     | stats values(source_ip) as "Attacker_IP"
@@ -62,10 +61,8 @@ This is a key step in incident correlation — mapping user activity to external
 
 SPL Query:
 
-    index=ssh_index
-    | spath
-    | search user="thor" status="failed"
-    | stats count as "Failed_Attempts"
+    index=ssh_json_index  "Failed password" user="thor"
+    | stats count as "Failed Attempts"
 
 
 🧠 Analyst Insight:
@@ -98,7 +95,8 @@ All three searches can be combined into a Splunk dashboard for continuous monito
 This demonstrates understanding of real-time security visualization in a SOC setting.
 
 📸 Dashboard Screenshot:
-🖼️ View Dashboard
+
+[![View Dashboard](./images/Dashboard.png)](./images)
 
 ---
 
