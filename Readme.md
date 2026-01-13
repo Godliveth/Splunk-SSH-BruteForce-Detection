@@ -2,7 +2,7 @@
 
 ### 🎯 Objective
 As a SOC Trainee, the goal of this lab was to use **Splunk** to detect and investigate a simulated **SSH brute-force attack** by analyzing JSON-formatted Linux authentication logs.  
-This project demonstrates how to extract and analyze failed login attempts, identify suspicious IPs, and understand brute-force attack patterns — a critical skill for any SOC or Threat Analyst.
+This project demonstrates how to extract and analyze failed login attempts, identify suspicious IPs, and understand brute-force attack patterns, a critical skill for any SOC or Threat Analyst.
 
 ---
 
@@ -79,6 +79,49 @@ High frequency of failed attempts on a single account is a strong indicator of b
 | Q3       | Thor had multiple failed login attempts      | Confirms brute-force pattern               |
 
 ---
+## 🔐 MITRE ATT&CK Mapping
+
+This investigation was mapped to the **MITRE ATT&CK framework** to classify the observed attacker behavior and intent using an industry-standard threat model.
+
+---
+
+### 🎯 Why This Is Credential Access
+
+According to MITRE ATT&CK, the **Credential Access** tactic covers adversary behavior focused on obtaining usernames, passwords, or other authentication material.
+
+In this project, the attacker:
+- Performed repeated SSH authentication attempts
+- Targeted multiple user accounts
+- Focused on a specific user (`thor`)
+- Generated a high volume of failed login events from a single external IP
+
+These behaviors clearly indicate **credential-guessing activity**, rather than normal user behavior.
+
+---
+
+### 🗂️ MITRE ATT&CK Technique Mapping
+
+| Observed Behavior | Tactic | Technique | Technique ID |
+|------------------|--------|----------|--------------|
+| Multiple failed SSH login attempts across users | Credential Access | Brute Force | T1110 |
+| Repeated SSH attempts against user `thor` | Credential Access | Brute Force | T1110 |
+| High-frequency authentication failures from one IP | Credential Access | Brute Force | T1110 |
+
+> ⚠️ **Note:** This project primarily focuses on **pre-compromise detection**.
+
+---
+
+### 🧠 MITRE ATT&CK Analyst Summary
+
+Analysis of SSH authentication logs revealed repeated failed login attempts consistent with **Brute Force (T1110)** under the **Credential Access** tactic. The concentration of attempts against a single user account from an external IP strongly suggests automated credential-guessing behavior. This activity represents an early-stage attack that could lead to **Initial Access** if valid credentials are obtained.
+
+---
+
+### ✅ SOC Analyst Takeaways
+- Credential Access focuses on **intent to obtain credentials**
+- Repeated authentication failures are a primary brute-force indicator
+- MITRE ATT&CK enables consistent threat classification
+- Mapping attacker behavior (not tools) is critical in SOC investigations
 
 ## 📸 Screenshots Folder
 
@@ -104,11 +147,12 @@ This demonstrates understanding of real-time security visualization in a SOC set
 📁 Splunk-SSH-BruteForce-Detection
 │
 ├── 📄 README.md
+├── MITRE ATT&CK Mapping
 ├── 📂 screenshots
 │   ├── Q1_Top_Attempted_Users.png
 │   ├── Q2_Thor_IP.png
 │   ├── Q3_Thor_Failed_Attempts.png
-│
+│   
 ├── 📂 images
 │   └── Dashboard.png
 │
